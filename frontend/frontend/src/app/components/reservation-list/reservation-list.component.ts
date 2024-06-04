@@ -9,6 +9,7 @@ import { Reservation } from '../../models/reservation';
 })
 export class ReservationListComponent implements OnInit {
   reservations: Reservation[] = [];
+  displayedColumns: string[] = ['customerName', 'numberOfPeople', 'reservationDateTime', 'comments', 'actions'];
 
   constructor(private reservationService: ReservationService) {}
 

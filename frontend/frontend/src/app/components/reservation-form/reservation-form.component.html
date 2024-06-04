@@ -1,24 +1,26 @@
-<div class="container mx-auto mt-4">
-  <h1 class="text-2xl font-bold mb-4" *ngIf="!reservationId">New Reservation</h1>
-  <h1 class="text-2xl font-bold mb-4" *ngIf="reservationId">Edit Reservation</h1>
-  <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2">Customer Name</label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" formControlName="customerName">
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2">Number of People</label>
-      <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" formControlName="numberOfPeople">
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2">Date and Time</label>
-      <input type="datetime-local" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" formControlName="reservationDateTime">
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2">Comments</label>
-      <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" formControlName="comments"></textarea>
-    </div>
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Save</button>
-    <a [routerLink]="['/reservations']" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2">Cancel</a>
-  </form>
-</div>
+<mat-card class="container mt-4">
+  <mat-card-title *ngIf="!reservationId">New Reservation</mat-card-title>
+  <mat-card-title *ngIf="reservationId">Edit Reservation</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="full-width">
+        <mat-label>Customer Name</mat-label>
+        <input matInput formControlName="customerName">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Number of People</mat-label>
+        <input matInput type="number" formControlName="numberOfPeople">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Date and Time</mat-label>
+        <input matInput type="datetime-local" formControlName="reservationDateTime">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Comments</mat-label>
+        <textarea matInput formControlName="comments"></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+      <button mat-raised-button color="warn" routerLink="/reservations" class="ml-2">Cancel</button>
+    </form>
+  </mat-card-content>
+</mat-card>
