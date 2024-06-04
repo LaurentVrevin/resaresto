@@ -1,17 +1,25 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ReservationListComponent } from './components/reservation-list/reservation-list.component';
 import { ReservationFormComponent } from './components/reservation-form/reservation-form.component';
 
-const routes: Routes = [
-  { path: '', redirectTo: '/reservations', pathMatch: 'full' },
-  { path: 'reservations', component: ReservationListComponent },
-  { path: 'reservation/new', component: ReservationFormComponent },
-  { path: 'reservation/edit/:id', component: ReservationFormComponent }
-];
-
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  declarations: [
+    AppComponent,
+    ReservationListComponent,
+    ReservationFormComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppRoutingModule { }
+export class AppModule { }
