@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="container mx-auto mt-4">
+  <h1 class="text-2xl font-bold mb-4">Reservations</h1>
+  <a routerLink="/reservation/new" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add New Reservation</a>
+  <table class="min-w-full bg-white mt-4">
+    <thead>
+    <tr>
+      <th class="py-2">Customer Name</th>
+      <th class="py-2">Number of People</th>
+      <th class="py-2">Date and Time</th>
+      <th class="py-2">Comments</th>
+      <th class="py-2">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let reservation of reservations">
+      <td class="py-2">{{ reservation.customerName }}</td>
+      <td class="py-2">{{ reservation.numberOfPeople }}</td>
+      <td class="py-2">{{ reservation.reservationDateTime | date: 'short' }}</td>
+      <td class="py-2">{{ reservation.comments }}</td>
+      <td class="py-2">
+        <a [routerLink]="['/reservation/edit', reservation.id]" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded">Edit</a>
+        <button (click)="deleteReservation(reservation.id)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded ml-2">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
