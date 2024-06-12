@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationService } from '../../services/reservation.service';
 import { Reservation } from '../../models/reservation';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-reservation-form',
@@ -17,7 +18,8 @@ export class ReservationFormComponent implements OnInit {
     private fb: FormBuilder,
     private reservationService: ReservationService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.reservationForm = this.fb.group({
       customerName: ['', Validators.required],
@@ -44,10 +46,12 @@ export class ReservationFormComponent implements OnInit {
       const reservation: Reservation = this.reservationForm.value;
       if (this.reservationId) {
         this.reservationService.updateReservation(this.reservationId, reservation).subscribe(() => {
+        this.snackBar.open('Reservation updated successfully!', 'close', { duration: 3000 })
           this.router.navigate(['/reservations']);
         });
       } else {
         this.reservationService.createReservation(reservation).subscribe(() => {
+        this.snackBar.open('Reservation created successfully', 'close', { duration: 3000})
           this.router.navigate(['/reservations']);
         });
       }
